@@ -22,3 +22,7 @@ Route::get('/product', [ProductController::class, 'index'])
 ->name('product.index');
 Route::post('/product', [ProductController::class, 'store'])
 ->name('product.store');
+Route::get('/product/edit/{product}', [ProductController::class, 'edit'])
+->name('product.edit');
+Route::delete('/product/{product}', [ProductController::class, 'destroy'])
+->name('product.destroy');

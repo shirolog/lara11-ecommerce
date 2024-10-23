@@ -60,6 +60,7 @@ class ProductController extends Controller
         $product -> description = $request->input('description');
         $product -> price = $request->input('price');
         $product -> photo = $path;
+
         $product->save();
 
         return redirect()->back();
