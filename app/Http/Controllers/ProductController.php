@@ -39,13 +39,13 @@ class ProductController extends Controller
             'cat_id' => 'required',
             'description' => 'required',
             'price' => 'required|numeric|min:0',
-            'photo' => 'required|file|mimes:jpeg,jpg,png,gif|max:2048',
+            'photo' => 'required|file|mimes:jpeg,jpg,png,gif',
         ]);
 
 
         $product = new Product;
 
-        $dir = 'images';
+        // $dir = 'images';
 
         $file = $request->file('photo');
 
@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $filename = time().'.'.$extension;
 
-        $path = $file->store('public/'. $dir, $filename);
+        $path = $file->storeAs('public/images', $filename);
 
         $product -> productname = $request->input('productname');
         $product -> cat_id = $request->input('cat_id');
