@@ -39,13 +39,13 @@ class ProductController extends Controller
             'cat_id' => 'required',
             'description' => 'required',
             'price' => 'required|numeric|min:0',
-            'photo' => 'required|file|mimes:jpeg,jpg,png,gif',
+            'photo' => 'required|file|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
 
 
         $product = new Product;
 
-        // $dir = 'images';
+        $dir = 'images';
 
         $file = $request->file('photo');
 
@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $filename = time().'.'.$extension;
 
-        $path = $file->storeAs('public/images', $filename);
+        $path = $file->storeAs($dir, $filename, 'public');
 
         $product -> productname = $request->input('productname');
         $product -> cat_id = $request->input('cat_id');
@@ -94,7 +94,18 @@ class ProductController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Product $product)
-    {
-        //
+    {   
+
+        $oldImg = storage_path('app/public/' . $product->photo);
+        
+        if(file_exists($oldImg)){
+            unlink($oldImg);
+        }else{
+            dd($oldImg);
+        }
+
+        $product->delete();
+
+        return redirect()->back();
     }
 }

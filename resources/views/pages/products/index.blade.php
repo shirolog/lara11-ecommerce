@@ -77,7 +77,6 @@
                                 <td scope="col">
                                     <img src="{{Storage::url($product->photo)}}" alt="Product Image" width="100"> 
                                 </td>
-
                                 <td scope="col">
                                     <a href="{{route('product.edit', $product->id)}}">
                                         <button class="btn btn-primary btn-sm"><i class="fas fa-square-pen"  aria-hidden="true"></i>Edit</button>
@@ -87,7 +86,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" 
-                                        onclick="return confirm('delete this category?');">Delete</button>
+                                        onclick="return confirm('delete this product?');">Delete</button>
                                     </form>
                                 </td>
                             </tr>
