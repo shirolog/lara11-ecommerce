@@ -59,31 +59,31 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Category Name</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($categories as $key => $category)
+                        @foreach($products as $key => $product)
                             <tr>
                                 <td scope="col">{{++$key}}</td>
-                                <td scope="col">{{$category->name}}</td>
+                                <td scope="col">{{$product->productname}}</td>
+                                <td scope="col">{{$product->category->name}}</td>
+                                <td scope="col">{{number_format($product->price)}}$</td>
                                 <td scope="col">
-                                    @if($category->status == 1)
-                                        true
-                                    @else
-                                        false
-                                    @endif
+                                    <img src="{{Storage::url($product->photo)}}" alt="Product Image" width="100"> 
                                 </td>
 
                                 <td scope="col">
-                                    <a href="{{route('category.edit', $category->id)}}">
+                                    <a href="{{route('product.edit', $product->id)}}">
                                         <button class="btn btn-primary btn-sm"><i class="fas fa-square-pen"  aria-hidden="true"></i>Edit</button>
                                     </a>
 
-                                    <form action="{{route('category.destroy', $category->id)}}" method="post" style="display: inline;">
+                                    <form action="{{route('product.destroy', $product->id)}}" method="post" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" 

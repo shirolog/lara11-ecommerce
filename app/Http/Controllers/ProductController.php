@@ -53,13 +53,14 @@ class ProductController extends Controller
 
         $filename = time().'.'.$extension;
 
-        $path = $file->store('public/'. $dir, $filename);
+        $path = $file->storeAs($dir, $filename, 'public');
 
         $product -> productname = $request->input('productname');
         $product -> cat_id = $request->input('cat_id');
         $product -> description = $request->input('description');
         $product -> price = $request->input('price');
         $product -> photo = $path;
+
         $product->save();
 
         return redirect()->back();
