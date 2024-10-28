@@ -58,7 +58,15 @@
                 <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                 <li><a href="{{route('category.index')}}">Category</a></li>
                 <li><a href="{{route('product.index')}}">Products</a></li>
-                <li><a href="">Logout</a></li>
+                <li>
+                <form action="{{route('admin.logout')}}" method="post" id="logout-form" style="display: none;">
+                    @csrf
+                </form>
+                <a href="#" onclick="event.preventDefault(); if (confirm('Do you want to log out?'))
+                { document.getElementById('logout-form').submit(); }">Logout</a>
+
+
+                </li>
             </ul>
         </nav>
 

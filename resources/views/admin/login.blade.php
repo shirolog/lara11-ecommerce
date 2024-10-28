@@ -39,7 +39,8 @@
                             </tr>
                             
                             <tr>
-                                <td colspan="2" align="right" valign="middle" class="style1">
+                                <td style="border-right-width: 0;" align="center"><a href="">register</a></td>
+                                <td align="right" valign="middle" class="style1" style="border-left-width:0;" align="center">
                                     <button type="submit" class="btn btn-primary" >Sign In</button>
                                 </td>
                             </tr>

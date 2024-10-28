@@ -30,6 +30,7 @@ Route::middleware(['auth', 'user'])->group(function () {
 });
 
 
+
 // Admin Authentication Routes
 Route::get('/admin/login', [AdminLoginController::class, 'index'])->name('admin.login')->middleware('clear_cookies');;
 Route::post('/admin/check', [AdminLoginController::class, 'admincheck'])->name('admin.check');
@@ -41,4 +42,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     
     Route::resource('category', CategoryController::class)->except(['create', 'show']);
     Route::resource('product', ProductController::class)->except(['create', 'show']);
+
 });     
