@@ -13,16 +13,22 @@ class AdminRegistationController extends Controller
     {
         return view('admin.create');
     }
+
+
     public function store(Request $request)
     {
-       $input = $request->all();
-       User::create([
-        'name' => $input['name'],
-        'email' => $input['email'],
-        'password' => Hash::make($input['password']),
-        'role' => 'admin'
-        
-      ]);
-       return view('admin.thank');
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        $user = new User;
+
+        $user -> name = $request->input('name');
+        $user -> email = $request->input('email');
+        $user -> password = Hash::make($request->input('password'));
+        $user -> role = 'admin';
+        $user->save();
+        return view('admin.thank');
     }
 }

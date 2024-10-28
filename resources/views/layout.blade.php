@@ -55,10 +55,10 @@
     <div class="container1">
         <nav class="sidebar">
             <ul>
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Category</a></li>
-                <li><a href="#">Products</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
+                <li><a href="{{route('category.index')}}">Category</a></li>
+                <li><a href="{{route('product.index')}}">Products</a></li>
+                <li><a href="">Logout</a></li>
             </ul>
         </nav>
 

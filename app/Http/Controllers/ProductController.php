@@ -78,8 +78,10 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Product $product)
-    {
-        //
+    {   
+        $categories = Category::all();
+
+        return view('pages.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -87,7 +89,43 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+
+            'productname' => 'required',
+            'cat_id' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+            'photo' => 'required|file|mimes:jpeg,jpg,png,gif|max:2048',
+        ]);
+
+
+        $dir = 'images';
+
+        $file = $request->file('photo');
+
+        $extension = $file->getClientOriginalExtension();
+
+        $filename = time().'.'.$extension;
+
+        $path = $file->storeAs($dir, $filename, 'public');
+
+        $oldImg = storage_path('app/public/' . $product->photo);
+
+
+        $product -> productname = $request->input('productname');
+        $product -> cat_id = $request->input('cat_id');
+        $product -> description = $request->input('description');
+        $product -> price = $request->input('price');
+        $product -> photo = $path;
+
+        $product->save();
+
+        
+        if(file_exists($oldImg)){
+            unlink($oldImg);
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -100,12 +138,10 @@ class ProductController extends Controller
         
         if(file_exists($oldImg)){
             unlink($oldImg);
-        }else{
-            dd($oldImg);
         }
 
         $product->delete();
 
-        return redirect()->back();
+        return redirect()->route('product.index');
     }
 }

@@ -57,16 +57,27 @@ class CategoryController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Category $category)
-    {
-        //
+    {   
+        
+        return view('pages.category.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Category $category)
-    {
-        //
+    {   
+        $request->validate([
+
+            'name' => 'required',
+            'status' => 'required|boolean',
+        ]);
+
+        $category -> name = $request->input('name');
+        $category -> status = $request->input('status');
+        $category->save();
+
+        return redirect()->back();
     }
 
     /**
@@ -76,6 +87,6 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->back();
+        return redirect()->route('category.index');
     }
 }

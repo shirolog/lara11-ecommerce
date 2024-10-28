@@ -1,7 +1,7 @@
 @extends('loginlayout')
 @section('content')
   
-    <div class="container">
+<div class="container">
     <table width="100%" height="100%" border="0" cellspacing="0" align="center">
         <tr>
             <td align="center" valign="middle">
@@ -24,24 +24,25 @@
                         </tr>
                         <form  action="{{ route('admin.check') }}" method="POST">
                             @csrf
-                        <tr>
-                            <td width="118" align="left" valign="middle" class="style1">Username</td>
-                            <td width="118" align="left" valign="middle" class="style1">
-                                <input type="text" class="form-control" size="10px" id="username" placeholder="Username" name="email">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="118" align="left" valign="middle" class="style1">Password</td>
-                            <td width="118" align="left" valign="middle" class="style1">
-                                <input type="password" class="form-control" size="10px" id="password" placeholder="password" name="password">
-                            </td>
-                        </tr>
-                        
-                        <tr>
-                            <td colspan="2" align="right" valign="middle" class="style1">
-                                <button type="submit" class="btn btn-primary" >Sign In</button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td width="118" align="left" valign="middle" class="style1">Email</td>
+                                <td width="118" align="left" valign="middle" class="style1">
+                                    <input type="email" name="email" class="form-control" size="10px" id="email" placeholder="UserEmail">
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td width="118" align="left" valign="middle" class="style1">Password</td>
+                                <td width="118" align="left" valign="middle" class="style1">
+                                    <input type="password" name="password" class="form-control" size="10px" id="password" placeholder="password">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td colspan="2" align="right" valign="middle" class="style1">
+                                    <button type="submit" class="btn btn-primary" >Sign In</button>
+                                </td>
+                            </tr>
                     </form>
                 </table>
             </td>
@@ -51,6 +52,7 @@
 </body>
 </html>
 @endsection
+
 @push('css')
 <style type="text/css">
         body,td,th{

@@ -13,15 +13,22 @@ class UserRegistationController extends Controller
     {
         return view('user.create');
     }
+
     public function store(Request $request)
     {
-       $input = $request->all();
-       User::create([
-        'name' => $input['name'],
-        'email' => $input['email'],
-        'password' => Hash::make($input['password'])
-        
-      ]);
-       return view('user.thank');
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = new User;
+
+        $user -> name = $request->input('name');
+        $user -> email = $request->input('email');
+        $user -> password = Hash::make($request->input('password'));
+        $user -> role = 'user';
+        $user->save();
+        return view('admin.thank');
     }
 }

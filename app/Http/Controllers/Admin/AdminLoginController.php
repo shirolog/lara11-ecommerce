@@ -12,11 +12,13 @@ class AdminLoginController extends Controller
     {
         return view('admin.login');
     }
+
+
     public function admincheck(Request $request)
     { 
      $credentials = $request->validate([
-     'email' => ['required', 'email'],
-     'password' => ['required'],
+     'email' => 'required|email',
+     'password' => 'required',
         ]);
         
         if (Auth::attempt(array_merge($credentials, ['role' => 'admin']))) {
@@ -28,6 +30,9 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.login');
         }  
     }
+
+
+    
     public function logout(Request $request)
     {
         Auth::logout();

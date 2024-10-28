@@ -12,12 +12,13 @@
             </div>
             <div class="col-md-8">
                 <div class="form-area">
-                    <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('product.update', $product->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="productname">Product Name</label>
-                                <input type="text" name="productname" class="form-control" id="productname">
+                                <input type="text" name="productname" class="form-control" id="productname" value="{{$product->productname}}">
                             </div>
 
                             <div class="col-md-6">
@@ -33,12 +34,12 @@
 
                             <div class="col-md-6">
                                 <label for="description">Description</label>
-                                <textarea value="" name="description" class="form-control" id="description"></textarea>
+                                <textarea value="" name="description" class="form-control" id="description" >{{$product->description}}</textarea>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="price">Price</label>
-                                <input type="number" name="price" class="form-control" id="price">
+                                <input type="number" name="price" class="form-control" id="price" value="{{$product->price}}">
                             </div>
 
                             <div class="col-md-6">
@@ -51,7 +52,7 @@
 
                         <div class="row">
                             <div class="col-md-12 mt-3">
-                                <input type="submit" class="btn btn-primary" value="Submit">
+                                <input type="submit" class="btn btn-primary" value="Update">
                             </div>
                         </div>
                     </form>
@@ -60,7 +61,6 @@
                 <table class="table mt-5">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Category</th>
                             <th scope="col">Price</th>
@@ -70,9 +70,7 @@
                     </thead>
 
                     <tbody>
-                        @foreach($products as $key => $product)
                             <tr>
-                                <td scope="col">{{++$key}}</td>
                                 <td scope="col">{{$product->productname}}</td>
                                 <td scope="col">{{$product->category->name}}</td>
                                 <td scope="col">{{number_format($product->price)}}$</td>
@@ -80,9 +78,6 @@
                                     <img src="{{Storage::url($product->photo)}}" alt="Product Image" width="100" height="100" style="object-fit:contain;"> 
                                 </td>
                                 <td scope="col">
-                                    <a href="{{route('product.edit', $product->id)}}">
-                                        <button class="btn btn-primary btn-sm"><i class="fas fa-square-pen"  aria-hidden="true"></i>Edit</button>
-                                    </a>
 
                                     <form action="{{route('product.destroy', $product->id)}}" method="post" style="display: inline;">
                                         @csrf
@@ -92,7 +87,6 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
                     </tbody>
                 </table>
             </div>
