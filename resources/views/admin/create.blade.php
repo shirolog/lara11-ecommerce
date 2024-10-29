@@ -18,7 +18,10 @@
                     <label>Password</label>
                     <input type="password" name="password" id="password" class ="form-control"> </br>
 
-                    <input type="submit" value="Save" class="btn btn-success"> 
+                    <input type="submit" value="Save" class="btn btn-success">
+                    <p class="mt-3 mb-0">already have an account?</p>
+                    <a href="{{url('admin/login')}}">Login now</a>
+
                 </form>
             </div>
         </div>

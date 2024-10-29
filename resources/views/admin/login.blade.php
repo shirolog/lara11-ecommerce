@@ -39,7 +39,10 @@
                             </tr>
                             
                             <tr>
-                                <td style="border-right-width: 0;" align="center"><a href="">register</a></td>
+                                <td style="border-right-width: 0;">
+                                    <p style="margin-bottom:0;" align="center">don't have an account?</p>
+                                    <a href="{{url('/admin/register')}}">Register now</a>
+                                </td>
                                 <td align="right" valign="middle" class="style1" style="border-left-width:0;" align="center">
                                     <button type="submit" class="btn btn-primary" >Sign In</button>
                                 </td>
@@ -64,6 +67,7 @@
             background-color: #F0F0F0;
             
         }
+
         .style1
         {
             font-family: arial, helvetica, sans-serif;

@@ -11,10 +11,8 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin.login');
 });
-
-
 
 
 Route::get('/login', [UserLoginController::class, 'index'])->name('user.login')->middleware('clear_cookies');
@@ -42,5 +40,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
     
     Route::resource('category', CategoryController::class)->except(['create', 'show']);
     Route::resource('product', ProductController::class)->except(['create', 'show']);
-
 });     

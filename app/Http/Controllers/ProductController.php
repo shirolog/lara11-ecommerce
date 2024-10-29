@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,7 +13,8 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+
         $products = Product::all();
 
         $categories = Category::with('products')->get();

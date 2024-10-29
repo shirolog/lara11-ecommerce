@@ -39,6 +39,10 @@
                                 </tr>
                                 
                                 <tr>
+                                    <td style="border-right-width: 0;">
+                                        <p style="margin-bottom:0;" align="center">don't have an account?</p>
+                                        <a href="{{url('/register')}}">Register now</a>
+                                    </td>
                                     <td colspan="2" align="right" valign="middle" class="style1">
                                         <button type="submit" class="btn btn-primary" >Sign In</button>
                                     </td>
